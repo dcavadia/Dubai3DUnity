@@ -46,6 +46,12 @@ public static class AudioManager
         //audioSource.volume = Mathf.Lerp(audioSource.volume, 0f, 1f * Time.deltaTime);
     }
 
+    public static void Stop()
+    {
+        audioSource.Stop();
+    }
+
+
     public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
     {
         float currentTime = 0;

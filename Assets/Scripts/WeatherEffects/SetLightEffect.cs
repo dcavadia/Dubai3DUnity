@@ -18,16 +18,9 @@ public class SetLightEffect : MonoBehaviour
 
     static public void LightEffect(float intensity, MonoBehaviour justToStartCoroutine)
     {
-        //myLight.intensity = Mathf.PingPong(Time.time, 8)
-        //startTime = Time.deltaTime;
-        /*while (myLight.intensity < intensity)
-        {
-            myLight.intensity = Mathf.Lerp(1f, intensity, Time.deltaTime * 1f);
-        }*/
-        Debug.Log("LUZ");
-        //Debug.Log(Time.deltaTime);
+
         justToStartCoroutine.StartCoroutine(LerpLightRepeat(intensity));
-        //myLight.intensity = intensity;
+
 
     }
 
@@ -35,10 +28,9 @@ public class SetLightEffect : MonoBehaviour
     {
         while (true)
         {
-            //Lerp to intensity1
+
             yield return LerpLight(myLight, intensity, 3f);
-            //Lerp to intensity2
-            //yield return LerpLight(point_light, intensity2, 2f);
+
         }
     }
 

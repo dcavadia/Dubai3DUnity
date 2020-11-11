@@ -12,16 +12,16 @@ public class WeatherAPI : MonoBehaviour
 
     private const string API_KEY = "1bd65cb959ab6e20f614c0ca46711fac";
     private const string CityId = "292223"; //Dubai
-
-    private const float API_CHECK_MAXTIME = 5.0f * 60.0f; //5 minutes
-    private float apiCheckCountdown = API_CHECK_MAXTIME;
-
-    public Text locationUI;
-    public Text conditionUI;
-    public Text temperatureUI;
+    private Weather WeatherMainScript;
 
 
-    IEnumerator GetWeather(Action<WeatherInfo> onSuccess)
+    private void Awake()
+    {
+        WeatherMainScript = gameObject.GetComponent<Weather>();
+    }
+
+
+    public IEnumerator GetWeather(Action<WeatherInfo> onSuccess)
     {
         using (UnityWebRequest req = UnityWebRequest.Get(String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&APPID={1}&units=metric", CityId, API_KEY)))
         {
@@ -32,23 +32,7 @@ public class WeatherAPI : MonoBehaviour
             string weatherJSON = System.Text.Encoding.Default.GetString(result);
             Debug.Log(weatherJSON);
             WeatherInfo info = JsonUtility.FromJson<WeatherInfo>(weatherJSON);
-            //Debug.Log(info);
             onSuccess(info);
-        }
-    }
-
-    void Start()
-    {
-        StartCoroutine(GetWeather(SetWeatherStatus));
-    }
-
-    void Update()
-    {
-        apiCheckCountdown -= Time.deltaTime;
-        if (apiCheckCountdown <= 0)
-        {
-            apiCheckCountdown = API_CHECK_MAXTIME;
-            StartCoroutine(GetWeather(SetWeatherStatus));
         }
     }
 
@@ -56,24 +40,17 @@ public class WeatherAPI : MonoBehaviour
     {
         string weatherObjTemp = Mathf.RoundToInt(weatherObj.main.temp) + "°C";
 
-        locationUI.text = weatherObj.name;
-        conditionUI.text = weatherObj.weather[0].main;
-        temperatureUI.text = weatherObjTemp;
-
 
         switch (weatherObj.weather[0].main)
         {
             case "Clear":
-                Weather.SpawnWeatherPrefab(Weather.eWeatherState.clear);
-                MeteorologicalConditions.SpawnCondition(1);
+                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.clear, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
                 break;
             case "Rain":
-                Weather.SpawnWeatherPrefab(Weather.eWeatherState.rain);
-                MeteorologicalConditions.SpawnCondition(1);
+                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.rain, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
                 break;
             default://Default: Clear
-                Weather.SpawnWeatherPrefab(Weather.eWeatherState.clear);
-                MeteorologicalConditions.SpawnCondition(1);
+                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.clear, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
                 break;
         }
 
