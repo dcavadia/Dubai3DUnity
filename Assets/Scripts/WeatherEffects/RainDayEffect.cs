@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class RainDayEffect : MonoBehaviour
 {
+    [Header("Set in Inspector")]
     public GameObject rainPrefab;
 
-    void Start()
+    void Awake()
     {
-        // add listeners to the event manager
+        // Add event listener
         EventManager.AddRainDayListener(ActivateEffects);
-        
     }
 
     void ActivateEffects()
     {
-
-        //Debug.Log("EFECTO LLUVIA");
         Instantiate<GameObject>(rainPrefab, transform.position, Quaternion.identity);
-        SetLightEffect.LightEffect(0.85f, this);
+        SetDimLight.LightEffect(0.85f, this);
     }
 }

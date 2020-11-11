@@ -7,19 +7,19 @@ using UnityEngine.Events;
 public static class EventManager
 {
     // ClearDay support
-    static List<MeteorologicalConditions> clearDayInvokers = new List<MeteorologicalConditions>();
+    static List<WeatherConditions> clearDayInvokers = new List<WeatherConditions>();
     static List<UnityAction> clearDayListeners =
         new List<UnityAction>();
 
     // RainDay support
-    static List<MeteorologicalConditions> rainDayInvokers = new List<MeteorologicalConditions>();
+    static List<WeatherConditions> rainDayInvokers = new List<WeatherConditions>();
     static List<UnityAction> rainDayListeners =
         new List<UnityAction>();
 
 
 
     // Adds the given script as a points added invoker
-    public static void AddClearDayInvoker(MeteorologicalConditions invoker)
+    public static void AddClearDayInvoker(WeatherConditions invoker)
     {
         // add invoker to list and add all listeners to invoker
         clearDayInvokers.Add(invoker);
@@ -34,7 +34,7 @@ public static class EventManager
     {
         // add listener to list and to all invokers
         clearDayListeners.Add(listener);
-        foreach (MeteorologicalConditions invoker in clearDayInvokers)
+        foreach (WeatherConditions invoker in clearDayInvokers)
         {
             invoker.AddClearDayListener(listener);
         }
@@ -43,7 +43,7 @@ public static class EventManager
 
 
     // Adds the given script as a points added invoker
-    public static void AddRainDayInvoker(MeteorologicalConditions invoker)
+    public static void AddRainDayInvoker(WeatherConditions invoker)
     {
         // add invoker to list and add all listeners to invoker
         rainDayInvokers.Add(invoker);
@@ -60,7 +60,7 @@ public static class EventManager
     {
         // add listener to list and to all invokers
         rainDayListeners.Add(listener);
-        foreach (MeteorologicalConditions invoker in rainDayInvokers)
+        foreach (WeatherConditions invoker in rainDayInvokers)
         {
             invoker.AddRainDayListener(listener);
         }

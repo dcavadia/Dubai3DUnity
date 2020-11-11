@@ -7,19 +7,18 @@ using UnityEngine;
 public class WeatherScriptableObject : ScriptableObject
 {
     static public WeatherScriptableObject S; // This Scriptable Object is an unprotected Singleton
+
+    [Header("Set in Inspector")]
+    public GameObject[] weatherPrefabs;
+
     public WeatherScriptableObject()
     {
         S = this; // Assign the Singleton as part of the constructor.
     }
 
-    public float weatherScale = 50f;
-
-    public GameObject[] weatherPrefabs;
-
     public GameObject GetWeatherPrefab(int ndx)
     {
         return weatherPrefabs[ndx];
     }
-
 
 }

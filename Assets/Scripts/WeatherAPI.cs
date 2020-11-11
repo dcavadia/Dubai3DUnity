@@ -20,7 +20,7 @@ public class WeatherAPI : MonoBehaviour
         WeatherMainScript = gameObject.GetComponent<Weather>();
     }
 
-
+    // Coroutine that send a GET request to the Weather API
     public IEnumerator GetWeather(Action<WeatherInfo> onSuccess)
     {
         using (UnityWebRequest req = UnityWebRequest.Get(String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&APPID={1}&units=metric", CityId, API_KEY)))
@@ -36,10 +36,10 @@ public class WeatherAPI : MonoBehaviour
         }
     }
 
+    // Reference main script to set current weather status
     public void SetWeatherStatus(WeatherInfo weatherObj)
     {
         string weatherObjTemp = Mathf.RoundToInt(weatherObj.main.temp) + "°C";
-
 
         switch (weatherObj.weather[0].main)
         {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Weather : MonoBehaviour
 {
-    // Private Singleton-style instance. Accessed by static property S later in script
+    //Private Singleton-style instance. Accessed by static property S later in script
     static private Weather _S;
     static private eWeatherState WEATHER_STATE = eWeatherState.none;
 
@@ -32,9 +32,11 @@ public class Weather : MonoBehaviour
     private float apiCheckCountdown = API_CHECK_MAXTIME;
     private int CounterAPICalls;
 
+    // UI Text
     public Text locationUI;
     public Text conditionUI;
     public Text temperatureUI;
+
 
     private void Awake()
     {
@@ -63,15 +65,49 @@ public class Weather : MonoBehaviour
             StartCoroutine(APICall.GetWeather(APICall.SetWeatherStatus));
         }
 
+        //Checking changes in weather state thru the inspector
         WeatherStateChanged();
     }
 
 
+    // Weather change with API Call
+    public void SpawnWeatherPrefabAPI(eWeatherState actualWeather, string location, string weatherCondition, string temperature)
+    {
+
+        //Temperature is constantly changing
+        temperatureUI.text = temperature;
+
+        //First API Call
+        if (CounterAPICalls == 1)
+        {
+            Weather.WEATHER_STATE = actualWeather;
+            locationUI.text = location;
+            conditionUI.text = weatherCondition;
+            S.weatherState = Weather.WEATHER_STATE;
+            WeatherSpawner(actualWeather);
+        }
+        //New call with different weather
+        else if (S.weatherState != actualWeather)
+        {
+            DestroyCloud();
+            WeatherSpawner(actualWeather);
+        }
+
+    }
+
+    // Weather change by user in inspector
+    public void SpawnWeatherPrefabManual(eWeatherState actualWeather, string weatherCondition)
+    {
+        //Set new condition
+        conditionUI.text = weatherCondition;
+        DestroyCloud();
+        WeatherSpawner(actualWeather);
+    }
+
     public void WeatherStateChanged()
     {
-        if (S.weatherState != Weather.WEATHER_STATE)
+        if (Weather.WEATHER_STATE != S.weatherState)
         {
-
             switch (S.weatherState)
             {
                 case eWeatherState.none:
@@ -83,59 +119,12 @@ public class Weather : MonoBehaviour
                 case eWeatherState.rain:
                     SpawnWeatherPrefabManual(eWeatherState.rain, "Rain");
                     break;
-                default://Default: Clear
+                default://Default: None
                     SpawnWeatherPrefabManual(eWeatherState.none, "None");
                     break;
             }
-
             Weather.WEATHER_STATE = S.weatherState;
-
         }
-        //S.weatherState = Weather.WEATHER_STATE;
-        //this.weatherState = Weather.WEATHER_STATE;
-    }
-
-    public void SpawnWeatherPrefabAPI(eWeatherState actualWeather, string location, string weatherCondition, string temperature)
-    {
-        //Temperature is always changing
-        temperatureUI.text = temperature;
-
-        //First API Call
-        if (CounterAPICalls == 1)
-        {
-            Weather.WEATHER_STATE = actualWeather;
-
-            locationUI.text = location;
-            conditionUI.text = weatherCondition;
-            
-
-            WeatherSpawner(actualWeather);
-
-            S.weatherState = Weather.WEATHER_STATE;
-        }
-        //New call with different weather
-        else if (S.weatherState != actualWeather)
-
-        {
-            DestroyCloud();
-            WeatherSpawner(actualWeather);
-        }
-       
-
-
-    }
-
-    public void SpawnWeatherPrefabManual(eWeatherState actualWeather, string weatherCondition)
-    {
-        //Set new condition
-        conditionUI.text = weatherCondition;
-        //Destroy old Weather Model
-        DestroyCloud();
-        //Set new Weather
-        WeatherSpawner(actualWeather);
-
-
-
     }
 
     public void WeatherSpawner(eWeatherState actualWeather)
@@ -143,31 +132,39 @@ public class Weather : MonoBehaviour
         switch (actualWeather)
         {
             case eWeatherState.none:
-                //MeteorologicalConditions.SpawnCondition(0);
+                //No current weather
                 break;
             case eWeatherState.clear:
-                MeteorologicalConditions.SpawnCondition(0);
+                WeatherConditions.SpawnCondition(0);
                 break;
             case eWeatherState.rain:
-                MeteorologicalConditions.SpawnCondition(1);
+                WeatherConditions.SpawnCondition(1);
                 break;
             default://Default: Clear
-                MeteorologicalConditions.SpawnCondition(0);
+                WeatherConditions.SpawnCondition(0); // If WeatherAPI returns any conditions different from clear or rain
                 break;
         }
     }
 
+    //Destroy any weather model, sounds, light changes. (including particle effects).
     public void DestroyCloud()
     {
         Destroy(GameObject.FindWithTag("Cloud"));
         Destroy(GameObject.FindWithTag("Rain"));
-        SetLightEffect.LightEffect(1f, this);
+        SetDimLight.LightEffect(1f, this);
         AudioManager.Stop();
     }
 
     // ---------------- Static Section ---------------- //
 
-    //This static private property provides some protection for the Singleton _S
+    /// <summary>
+    /// <para>This static private property provides some protection for the Singleton _S.</para>
+    /// <para>get {} does return null, but throws an error first.</para>
+    /// <para>set {} allows overwrite of _S by a 2nd instance, but throws an error first.</para>
+    /// <para>Another advantage of using a property here is that it allows you to place
+    /// a breakpoint in the set clause and then look at the call stack if you fear that 
+    /// something random is setting your _S value.</para>
+    /// </summary>
     static private Weather S
     {
         get

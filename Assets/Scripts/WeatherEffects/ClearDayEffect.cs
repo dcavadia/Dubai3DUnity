@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class ClearDayEffect : MonoBehaviour
 {
-    private Animation myAnimationComponent;
+    [Header("Set in Inspector")]
     public AnimationClip anim;
+    private Animation myAnimationComponent;
 
-    void Start()
-    {
-        
+    void Awake()
+    { 
         myAnimationComponent = this.GetComponent<Animation>();
         myAnimationComponent.clip = anim;
 
-        // add listeners to the event manager
+        // Add event listener
         EventManager.AddClearDayListener(ActivateEffects);
-
     }
 
     void ActivateEffects()
     {
-
         AudioManager.Play(AudioClipName.Clear, this);
         myAnimationComponent.Play();
-        SetLightEffect.LightEffect(1.1f, this);
+        SetDimLight.LightEffect(1.1f, this);
     }
 }
