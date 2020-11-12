@@ -155,6 +155,23 @@ public class Weather : MonoBehaviour
         AudioManager.Stop();
     }
 
+
+    public string GetWeatherState()
+    {
+        switch (Weather.WEATHER_STATE)
+        {
+            case eWeatherState.none:
+                return ("None");
+            case eWeatherState.clear:
+                return ("Clear");
+            case eWeatherState.rain:
+                return ("Rain");
+            default://Default: Clear
+                return (conditionUI.text);
+        }
+    }
+
+
     // ---------------- Static Section ---------------- //
 
     /// <summary>

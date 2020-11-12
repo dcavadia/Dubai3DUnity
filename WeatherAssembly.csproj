@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{333E1C4E-4E73-8440-7443-893DB4F697A8}</ProjectGuid>
+    <ProjectGuid>{D43BE71C-B6FD-808E-5157-405997374290}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>WeatherAssembly</AssemblyName>
@@ -56,23 +56,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WeatherEffects\ClearDayEffect.cs" />
+    <Compile Include="Assets\RainMaker\Prefab\RainScript.cs" />
     <Compile Include="Assets\Scripts\WeatherAudioSource.cs" />
     <Compile Include="Assets\Scripts\WeatherAPI.cs" />
-    <Compile Include="Assets\Scripts\FreeLookCameraOverride.cs" />
+    <Compile Include="Assets\Scripts\CinemachineOverride.cs" />
+    <Compile Include="Assets\RainMaker\Editor\RainMakerEditor.cs" />
     <Compile Include="Assets\Scripts\Event\EventManager.cs" />
-    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\WeatherEffects\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Event\RainDay.cs" />
+    <Compile Include="Assets\RainMaker\Prefab\RainCollision.cs" />
+    <Compile Include="Assets\RainMaker\Prefab\BaseRainScript.cs" />
+    <Compile Include="Assets\RainMaker\Prefab\RainScript2D.cs" />
     <Compile Include="Assets\Scripts\WeatherEffects\RainDayEffect.cs" />
-    <Compile Include="Assets\Scripts\Floater.cs" />
-    <Compile Include="Assets\Scripts\WeatherEffects\SetLightEffect.cs" />
+    <Compile Include="Assets\Scripts\WeatherEffects\Floater.cs" />
+    <Compile Include="Assets\Scripts\WeatherEffects\SetDimLight.cs" />
     <Compile Include="Assets\Scripts\Event\ClearDay.cs" />
     <Compile Include="Assets\Scripts\WeatherScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weather.cs" />
-    <Compile Include="Assets\Scripts\SmoothCameraZoom.cs" />
-    <Compile Include="Assets\Scripts\MeteorologicalConditions.cs" />
+    <Compile Include="Assets\Scripts\WeatherConditions.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\Scripts\WeatherAssembly.asmdef" />
+     <None Include="Assets\WeatherAssembly.asmdef" />
+     <None Include="Assets\RainMaker\Readme.txt" />
+     <None Include="Assets\RainMaker\Prefab\RainShader.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -294,6 +300,9 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.3f1\Editor\Data\PlaybackEngines\AppleTVSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -649,11 +658,20 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.3f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

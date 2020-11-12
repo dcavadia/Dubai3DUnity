@@ -25,7 +25,7 @@ public class WeatherAPI : MonoBehaviour
     {
         using (UnityWebRequest req = UnityWebRequest.Get(String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&APPID={1}&units=metric", CityId, API_KEY)))
         {
-            yield return req.Send();
+            yield return req.SendWebRequest();
             while (!req.isDone)
                 yield return null;
             byte[] result = req.downloadHandler.data;
