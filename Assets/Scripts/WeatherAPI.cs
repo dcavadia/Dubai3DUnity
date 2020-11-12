@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class WeatherAPI : MonoBehaviour
 {
@@ -21,40 +22,16 @@ public class WeatherAPI : MonoBehaviour
     }
 
     // Coroutine that send a GET request to the Weather API
-    public IEnumerator GetWeather(Action<WeatherInfo> onSuccess)
+    public async UniTask<WeatherInfo> GetWeather()
     {
-        using (UnityWebRequest req = UnityWebRequest.Get(String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&APPID={1}&units=metric", CityId, API_KEY)))
-        {
-            yield return req.SendWebRequest();
-            while (!req.isDone)
-                yield return null;
-            byte[] result = req.downloadHandler.data;
-            string weatherJSON = System.Text.Encoding.Default.GetString(result);
-            Debug.Log(weatherJSON);
-            WeatherInfo info = JsonUtility.FromJson<WeatherInfo>(weatherJSON);
-            onSuccess(info);
-        }
+        UnityWebRequest req = await UnityWebRequest.Get(String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&APPID={1}&units=metric", CityId, API_KEY)).SendWebRequest(); 
+        byte[] result = req.downloadHandler.data;
+        string weatherJSON = System.Text.Encoding.Default.GetString(result);
+        Debug.Log(weatherJSON);
+        WeatherInfo info = JsonUtility.FromJson<WeatherInfo>(weatherJSON);
+        return info;
     }
 
-    // Reference main script to set current weather status
-    public void SetWeatherStatus(WeatherInfo weatherObj)
-    {
-        string weatherObjTemp = Mathf.RoundToInt(weatherObj.main.temp) + "°C";
-
-        switch (weatherObj.weather[0].main)
-        {
-            case "Clear":
-                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.clear, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
-                break;
-            case "Rain":
-                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.rain, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
-                break;
-            default://Default: Clear
-                WeatherMainScript.SpawnWeatherPrefabAPI(Weather.eWeatherState.clear, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
-                break;
-        }
-
-    }
 
 }
 

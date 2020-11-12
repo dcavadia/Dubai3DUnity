@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class Weather : MonoBehaviour
 {
@@ -26,10 +29,11 @@ public class Weather : MonoBehaviour
     [Tooltip("This private field shows the weather state in the Inspector")]
     protected eWeatherState weatherState;
 
-    private WeatherAPI APICall;
+    private WeatherAPI WeatherAPI;
     private const float API_CHECK_MAXTIME = 5.0f * 60.0f; //5 minutes
     private float apiCheckCountdown = API_CHECK_MAXTIME;
     private int CounterAPICalls;
+    private Weather.eWeatherState currentWeather;
 
     // UI Text
     public Text locationUI;
@@ -42,14 +46,14 @@ public class Weather : MonoBehaviour
         S = this;
         weatherState = eWeatherState.none;
         WEATHER_STATE = weatherState;
-        APICall = gameObject.GetComponent<WeatherAPI>();
+        WeatherAPI = gameObject.GetComponent<WeatherAPI>();
         CounterAPICalls = 1;
     }
 
 
-    void Start()
+    async void Start()
     {
-        StartCoroutine(APICall.GetWeather(APICall.SetWeatherStatus));
+        UpdateWeather();
     }
 
 
@@ -61,11 +65,36 @@ public class Weather : MonoBehaviour
         {
             CounterAPICalls++;
             apiCheckCountdown = API_CHECK_MAXTIME;
-            StartCoroutine(APICall.GetWeather(APICall.SetWeatherStatus));
+            UpdateWeather();
         }
 
         //Checking changes in weather state thru the inspector
         WeatherStateChanged();
+    }
+
+    private async UniTask UpdateWeather()
+    {
+        WeatherInfo weatherInfoTask = await WeatherAPI.GetWeather();
+        SetWeatherStatus(weatherInfoTask);
+    }
+
+    public void SetWeatherStatus(WeatherInfo weatherObj)
+    {
+        string weatherObjTemp = Mathf.RoundToInt(weatherObj.main.temp) + "°C";
+
+        switch (weatherObj.weather[0].main)
+        {
+            case "Clear":
+                currentWeather = Weather.eWeatherState.clear;
+                break;
+            case "Rain":
+                currentWeather = Weather.eWeatherState.rain;
+                break;
+            default://Default: Clear
+                currentWeather = Weather.eWeatherState.clear;
+                break;
+        }
+        SpawnWeatherPrefabAPI(currentWeather, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
     }
 
 
