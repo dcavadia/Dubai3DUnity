@@ -10,6 +10,8 @@ using UnityEditor;
 
 namespace DigitalRuby.RainMaker
 {
+#if UNITY_EDITOR
+
     public class RainMakerEditor : Editor
     {
         private Texture2D logo;
@@ -61,4 +63,5 @@ namespace DigitalRuby.RainMaker
     public class RainMakerEditor2D : RainMakerEditor
     {
     }
+#endif
 }

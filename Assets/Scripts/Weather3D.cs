@@ -30,7 +30,7 @@ public class Weather3D : MonoBehaviour
     protected eWeatherState weatherState;
 
     private WeatherAPI WeatherAPI;
-    private const float API_CHECK_MAXTIME = 5.0f * 60.0f; //5 minutes
+    private const float API_CHECK_MAXTIME = 10.0f * 60.0f; //5 minutes
     private float apiCheckCountdown = API_CHECK_MAXTIME;
     private int CounterAPICalls;
     private Weather3D.eWeatherState currentWeather;
