@@ -12,8 +12,8 @@ public static class EventManager
         new List<UnityAction>();
 
     // RainDay support
-    static List<WeatherConditions> rainDayInvokers = new List<WeatherConditions>();
-    static List<UnityAction> rainDayListeners =
+    static List<WeatherConditions> rainyDayInvokers = new List<WeatherConditions>();
+    static List<UnityAction> rainyDayListeners =
         new List<UnityAction>();
 
 
@@ -43,26 +43,26 @@ public static class EventManager
 
 
     // Adds the given script as a points added invoker
-    public static void AddRainDayInvoker(WeatherConditions invoker)
+    public static void AddRainyDayInvoker(WeatherConditions invoker)
     {
         // add invoker to list and add all listeners to invoker
-        rainDayInvokers.Add(invoker);
-        foreach (UnityAction listener in rainDayListeners)
+        rainyDayInvokers.Add(invoker);
+        foreach (UnityAction listener in rainyDayListeners)
         {
-            invoker.AddRainDayListener(listener);
+            invoker.AddRainyDayListener(listener);
         }
     }
 
 
 
     // Adds the given method as a points added listener
-    public static void AddRainDayListener(UnityAction listener)
+    public static void AddRainyDayListener(UnityAction listener)
     {
         // add listener to list and to all invokers
-        rainDayListeners.Add(listener);
-        foreach (WeatherConditions invoker in rainDayInvokers)
+        rainyDayListeners.Add(listener);
+        foreach (WeatherConditions invoker in rainyDayInvokers)
         {
-            invoker.AddRainDayListener(listener);
+            invoker.AddRainyDayListener(listener);
         }
     }
 }
