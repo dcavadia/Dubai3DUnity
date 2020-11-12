@@ -18,7 +18,7 @@ namespace Tests
         [OneTimeSetUp]
         public void LoadScene()
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("WeatherScene");
         }
 
         [UnityTest]
