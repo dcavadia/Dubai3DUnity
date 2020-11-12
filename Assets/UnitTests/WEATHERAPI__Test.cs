@@ -30,7 +30,7 @@ namespace Tests
 
             yield return new WaitForSeconds(2f);
 
-            Weather mainScript = Cam.GetComponent<Weather>();
+            Weather3D mainScript = Cam.GetComponent<Weather3D>();
             APIResult = mainScript.GetWeatherState(); 
             UIResult = mainScript.conditionUI.text;
             Assert.AreEqual(APIResult, UIResult);

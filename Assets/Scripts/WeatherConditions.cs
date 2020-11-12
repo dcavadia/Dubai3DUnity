@@ -45,13 +45,13 @@ public class WeatherConditions : MonoBehaviour
         switch (weatherCondition)
         {
             case 0:
-                wGO = Instantiate<GameObject>(Weather.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesClearDay, Quaternion.Euler(-15, -70, 48));
+                wGO = Instantiate<GameObject>(Weather3D.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesClearDay, Quaternion.Euler(-15, -70, 48));
                 break;
             case 1:
-                wGO = Instantiate<GameObject>(Weather.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesRainDay, Quaternion.Euler(0, 0, 5));
+                wGO = Instantiate<GameObject>(Weather3D.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesRainDay, Quaternion.Euler(0, 0, 5));
                 break;
             default://Default: Clear
-                wGO = Instantiate<GameObject>(Weather.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesClearDay, Quaternion.Euler(-12, -70f, 48));
+                wGO = Instantiate<GameObject>(Weather3D.WeatherSO.GetWeatherPrefab(ndx), spawnCoordinatesClearDay, Quaternion.Euler(-12, -70f, 48));
                 break;
         }
 
