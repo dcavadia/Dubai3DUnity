@@ -40,6 +40,14 @@ public class Weather : MonoBehaviour
     public Text conditionUI;
     public Text temperatureUI;
 
+    // Supported UI condition
+    private const string NONE_CONDITION_UI = "None";
+    private const string CLEAR_CONDITION_UI = "Clear";
+    private const string RAIN_CONDITION_UI = "Rain";
+
+    // Supported prefabs tags
+    private const string CLOUD_PREFAB_TAG = "Cloud";
+    private const string RAIN_PREFAB_TAG = "Rain";
 
     private void Awake()
     {
@@ -53,7 +61,7 @@ public class Weather : MonoBehaviour
 
     async void Start()
     {
-        UpdateWeather();
+        await UpdateWeather();
     }
 
 
@@ -74,27 +82,14 @@ public class Weather : MonoBehaviour
 
     private async UniTask UpdateWeather()
     {
-        WeatherInfo weatherInfoTask = await WeatherAPI.GetWeather();
+        WeatherGet weatherInfoTask = await WeatherAPI.GetWeather();
         SetWeatherStatus(weatherInfoTask);
     }
 
-    public void SetWeatherStatus(WeatherInfo weatherObj)
+    public void SetWeatherStatus(WeatherGet weatherObj)
     {
-        string weatherObjTemp = Mathf.RoundToInt(weatherObj.main.temp) + "°C";
-
-        switch (weatherObj.weather[0].main)
-        {
-            case "Clear":
-                currentWeather = Weather.eWeatherState.clear;
-                break;
-            case "Rain":
-                currentWeather = Weather.eWeatherState.rain;
-                break;
-            default://Default: Clear
-                currentWeather = Weather.eWeatherState.clear;
-                break;
-        }
-        SpawnWeatherPrefabAPI(currentWeather, weatherObj.name, weatherObj.weather[0].main, weatherObjTemp);
+        string weatherObjTemp = Mathf.RoundToInt(weatherObj.temperature) + "°C";
+        SpawnWeatherPrefabAPI(weatherObj.conditionId, weatherObj.city, weatherObj.conditionName, weatherObjTemp);
     }
 
 
@@ -117,7 +112,7 @@ public class Weather : MonoBehaviour
         //New call with different weather
         else if (S.weatherState != actualWeather)
         {
-            DestroyCloud();
+            DestroyWeather();
             WeatherSpawner(actualWeather);
         }
 
@@ -128,74 +123,87 @@ public class Weather : MonoBehaviour
     {
         //Set new condition
         conditionUI.text = weatherCondition;
-        DestroyCloud();
+        DestroyWeather();
         WeatherSpawner(actualWeather);
     }
 
     private void WeatherStateChanged()
     {
+
+        string UIManualCondition;
+
         if (Weather.WEATHER_STATE != S.weatherState)
         {
             switch (S.weatherState)
             {
                 case eWeatherState.none:
-                    SpawnWeatherPrefabManual(eWeatherState.none, "None");
+                    UIManualCondition = NONE_CONDITION_UI;
                     break;
                 case eWeatherState.clear:
-                    SpawnWeatherPrefabManual(eWeatherState.clear, "Clear");
+                    UIManualCondition = CLEAR_CONDITION_UI;
                     break;
                 case eWeatherState.rain:
-                    SpawnWeatherPrefabManual(eWeatherState.rain, "Rain");
+                    UIManualCondition = RAIN_CONDITION_UI;
                     break;
                 default://Default: None
-                    SpawnWeatherPrefabManual(eWeatherState.none, "None");
+                    UIManualCondition = NONE_CONDITION_UI;
                     break;
             }
+            SpawnWeatherPrefabManual(S.weatherState, UIManualCondition);
+
+
             Weather.WEATHER_STATE = S.weatherState;
         }
     }
 
+    // Spawn prefab of given weather
     private void WeatherSpawner(eWeatherState actualWeather)
     {
+        const int CLEAR_DAY_PREFAB = 0;
+        const int RAINY_DAY_PREFAB = 1;
+ 
         switch (actualWeather)
         {
             case eWeatherState.none:
                 //No current weather
                 break;
             case eWeatherState.clear:
-                WeatherConditions.SpawnCondition(0);
+                WeatherConditions.SpawnCondition(CLEAR_DAY_PREFAB);
                 break;
             case eWeatherState.rain:
-                WeatherConditions.SpawnCondition(1);
+                WeatherConditions.SpawnCondition(RAINY_DAY_PREFAB);
                 break;
             default://Default: Clear
-                WeatherConditions.SpawnCondition(0); // If WeatherAPI returns any conditions different from clear or rain
+                WeatherConditions.SpawnCondition(CLEAR_DAY_PREFAB); // If WeatherAPI returns any conditions different from clear or rain
                 break;
         }
     }
 
-    //Destroy any weather model, sounds, light changes. (including particle effects).
-    private void DestroyCloud()
+    // Destroy any weather model, sounds, light changes. (including particle effects).
+    private void DestroyWeather()
     {
-        Destroy(GameObject.FindWithTag("Cloud"));
-        Destroy(GameObject.FindWithTag("Rain"));
+        Destroy(GameObject.FindWithTag(CLOUD_PREFAB_TAG));
+        Destroy(GameObject.FindWithTag(RAIN_PREFAB_TAG));
         SetDimLight.LightEffect(1f, this);
+
+
         AudioManager.Stop();
     }
 
-
+    // Getter of WEATHER_STATE
+    // Since WEATHER_STATE is a enum, a mapped string is returned instead
     public string GetWeatherState()
     {
         switch (Weather.WEATHER_STATE)
         {
             case eWeatherState.none:
-                return ("None");
+                return NONE_CONDITION_UI;
             case eWeatherState.clear:
-                return ("Clear");
+                return CLEAR_CONDITION_UI;
             case eWeatherState.rain:
-                return ("Rain");
+                return RAIN_CONDITION_UI;
             default://Default: Clear
-                return (conditionUI.text);
+                return conditionUI.text;
         }
     }
 

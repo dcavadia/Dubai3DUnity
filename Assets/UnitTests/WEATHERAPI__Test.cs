@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class API__Test
+    public class WEATHERAPI__Test
     {
 
         public string APIResult;
@@ -21,8 +21,10 @@ namespace Tests
             SceneManager.LoadScene("WeatherScene");
         }
 
+
+        // TODO: Add mock
         [UnityTest]
-        public IEnumerator API__GET__Test()
+        public IEnumerator WEATHERAPI__GET__Test()
         {          
             GameObject Cam = GameObject.Find("Main Camera");
 
