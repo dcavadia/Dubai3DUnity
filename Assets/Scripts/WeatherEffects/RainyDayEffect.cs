@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainDayEffect : MonoBehaviour
+public class RainyDayEffect : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public GameObject rainPrefab;
@@ -10,7 +10,7 @@ public class RainDayEffect : MonoBehaviour
     void Awake()
     {
         // Add event listener
-        EventManager.AddRainDayListener(ActivateEffects);
+        EventManager.AddRainyDayListener(ActivateEffects);
     }
 
     void ActivateEffects()

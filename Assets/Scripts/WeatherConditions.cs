@@ -13,7 +13,7 @@ public class WeatherConditions : MonoBehaviour
 
     // Events
     private ClearDay clearDay;
-    private RainDay rainDay;
+    private RainyDay rainyDay;
 
     [Header("Set Dinamically")]
     public bool sonido;
@@ -22,8 +22,8 @@ public class WeatherConditions : MonoBehaviour
     void Awake()
     {
         // Add event invoker
-        rainDay = new RainDay();
-        EventManager.AddRainDayInvoker(this);
+        rainyDay = new RainyDay();
+        EventManager.AddRainyDayInvoker(this);
 
         // Add event invoker
         clearDay = new ClearDay();
@@ -77,7 +77,7 @@ public class WeatherConditions : MonoBehaviour
                 if ((distance <= 240) && (!sonido))
                 {
                     sonido = true;
-                    rainDay.Invoke();
+                    rainyDay.Invoke();
                 }
                 break;
             default://Default: Clear
@@ -97,9 +97,9 @@ public class WeatherConditions : MonoBehaviour
     }
 
     // Adds the given listener for the RainDay event
-    public void AddRainDayListener(UnityAction listener)
+    public void AddRainyDayListener(UnityAction listener)
     {
-        rainDay.AddListener(listener);
+        rainyDay.AddListener(listener);
     }
 
 }

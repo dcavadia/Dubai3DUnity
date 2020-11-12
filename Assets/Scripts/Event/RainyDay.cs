@@ -4,6 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // An event for when is a rainy day
-public class RainDay : UnityEvent
+public class RainyDay : UnityEvent
 {
 }
