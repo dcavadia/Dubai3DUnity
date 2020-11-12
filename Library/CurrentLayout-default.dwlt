@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 421}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 421}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -118,10 +118,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 911, y: 371}
-  m_MaxSize: {x: 22006, y: 14021}
+  m_MinSize: {x: 736, y: 392}
+  m_MaxSize: {x: 22006, y: 14042}
   vertical: 1
-  controlID: 399
+  controlID: 162
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 947
-  m_MinSize: {x: 911, y: 371}
-  m_MaxSize: {x: 22006, y: 14021}
+  m_MinSize: {x: 736, y: 392}
+  m_MaxSize: {x: 22006, y: 14042}
   vertical: 0
-  controlID: 400
+  controlID: 163
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 820
     height: 947
-  m_MinSize: {x: 201, y: 321}
-  m_MaxSize: {x: 4001, y: 8021}
+  m_MinSize: {x: 201, y: 342}
+  m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 125
+  controlID: 42
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 820
     height: 393
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 393
     width: 820
     height: 554
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -246,10 +246,10 @@ MonoBehaviour:
     y: 0
     width: 508
     height: 947
-  m_MinSize: {x: 434, y: 371}
-  m_MaxSize: {x: 14004, y: 14021}
+  m_MinSize: {x: 434, y: 392}
+  m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 90
+  controlID: 67
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 434, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 91
+  controlID: 68
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -346,8 +346,8 @@ MonoBehaviour:
     y: 655
     width: 508
     height: 292
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: TestRunnerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -372,14 +372,14 @@ MonoBehaviour:
     y: 0
     width: 592
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 21}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -613,9 +613,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1e3e0000
-      m_LastClickedID: 15902
-      m_ExpandedIDs: bcfaffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: c264ffffe864ffffe87bffffa892ffffce92ffffd8a9ffffa4c1ffffcac1ffff76c2ffff6edeffff34fbffff01000000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -689,7 +689,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fe3e0000
     m_LastClickedID: 16126
-    m_ExpandedIDs: 000000006470000066700000687000006a7000006c7000006e70000070700000727000007470000076700000787000007a7000007c7000007e7000008070000082700000847000008670000088700000
+    m_ExpandedIDs: 00000000006c0000026c0000046c0000066c0000086c00000a6c00000c6c00000e6c0000106c0000126c0000146c0000166c0000186c00001a6c00001c6c00001e6c0000206c0000226c0000246c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -717,7 +717,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000006470000066700000687000006a7000006c7000006e70000070700000727000007470000076700000787000007a7000007c7000007e7000008070000082700000847000008670000088700000
+    m_ExpandedIDs: ffffffff00000000006c0000026c0000046c0000066c0000086c00000a6c00000c6c00000e6c0000106c0000126c0000146c0000166c0000186c00001a6c00001c6c00001e6c0000206c0000226c0000246c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -830,7 +830,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 581
+  m_LastVerticalScrollValue: 0
   m_AssetGUID: 
   m_InstanceID: 0
   m_LockTracker:
@@ -856,18 +856,18 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1325
-    y: 81
-    width: 586
-    height: 910
+    x: 1328
+    y: 73
+    width: 591
+    height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_Spl:
-    ID: 218
+    ID: 782
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
-    - 630
-    - 210
+    - 642
+    - 214
     relativeSizes:
     - 0.75
     - 0.25
@@ -877,7 +877,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 840
+    lastTotalSize: 856
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -893,9 +893,9 @@ MonoBehaviour:
       uniqueId: '[Dubai 3D Weather][suite]'
       name: Dubai 3D Weather
       fullName: Dubai 3D Weather
-      resultStatus: 1
-      duration: 3.9905164
-      messages: 
+      resultStatus: 2
+      duration: 4.341306
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -909,9 +909,9 @@ MonoBehaviour:
       uniqueId: '[UnitTests.dll][suite]'
       name: UnitTests.dll
       fullName: C:/Users/Daniel/Desktop/Dubai BackUp/Dubai3DUnity/Library/ScriptAssemblies/UnitTests.dll
-      resultStatus: 1
-      duration: 3.8623874
-      messages: 
+      resultStatus: 2
+      duration: 4.120402
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -925,9 +925,9 @@ MonoBehaviour:
       uniqueId: UnitTests.dll/[UnitTests][Tests][suite]
       name: Tests
       fullName: Tests
-      resultStatus: 1
-      duration: 3.831958
-      messages: 
+      resultStatus: 2
+      duration: 4.061211
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -941,9 +941,9 @@ MonoBehaviour:
       uniqueId: UnitTests.dll/Tests/[UnitTests][Tests.API__Test][suite]
       name: API__Test
       fullName: Tests.API__Test
-      resultStatus: 1
-      duration: 3.7789624
-      messages: 
+      resultStatus: 2
+      duration: 4.030262
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -957,14 +957,21 @@ MonoBehaviour:
       uniqueId: UnitTests.dll/Tests/API__Test/[UnitTests][Tests.API__Test.API__GET__Test]
       name: API__GET__Test
       fullName: Tests.API__Test.API__GET__Test
-      resultStatus: 1
-      duration: 3.646386
-      messages: 
-      output: '{"coord":{"lon":55.3,"lat":25.26},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01n"}],"base":"stations","main":{"temp":23.8,"feels_like":25.83,"temp_min":22,"temp_max":25,"pressure":1015,"humidity":73},"visibility":7000,"wind":{"speed":1.5,"deg":70},"clouds":{"all":0},"dt":1605144421,"sys":{"type":1,"id":7537,"country":"AE","sunrise":1605148437,"sunset":1605187929},"timezone":14400,"id":292223,"name":"Dubai","cod":200}
+      resultStatus: 2
+      duration: 3.922747
+      messages: "  Expected string length 5 but was 4. Strings differ at index 0.\r\n 
+        Expected: \"Clear\"\r\n  But was:  \"Haze\"\r\n  -----------^\r\n"
+      output: '{"coord":{"lon":55.3,"lat":25.26},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50d"}],"base":"stations","main":{"temp":24.71,"feels_like":26.02,"temp_min":23.89,"temp_max":25,"pressure":1017,"humidity":73},"visibility":5000,"wind":{"speed":3.1,"deg":120},"clouds":{"all":0},"dt":1605155244,"sys":{"type":1,"id":7537,"country":"AE","sunrise":1605148437,"sunset":1605187929},"timezone":14400,"id":292223,"name":"Dubai","cod":200}
 
 '
-      stacktrace: 
+      stacktrace: 'at Tests.API__Test+<API__GET__Test>d__3.MoveNext () [0x00077]
+        in C:\Users\Daniel\Desktop\Dubai BackUp\Dubai3DUnity\Assets\UnitTests\API__Test.cs:34
+
+        at
+        UnityEngine.TestTools.TestEnumerator+<Execute>d__5.MoveNext () [0x00038]
+        in C:\Users\Daniel\Desktop\Dubai BackUp\Dubai3DUnity\Library\PackageCache\com.unity.test-framework@1.1.16\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:31
+
+'
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -973,17 +980,24 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: UnitTests.dll/Tests/[UnitTests][Tests.API__Test][suite]
-    m_ResultText: 'API__TestWithEnumeratorPasses (4.292s)
+    m_ResultText: "API__GET__Test (3.923s)\n---\nExpected string length 5 but was
+      4. Strings differ at index 0.\r\n  Expected: \"Clear\"\r\n  But was:  \"Haze\"\r\n 
+      -----------^\n---\nat Tests.API__Test+<API__GET__Test>d__3.MoveNext () [0x00077]
+      in C:\\Users\\Daniel\\Desktop\\Dubai BackUp\\Dubai3DUnity\\Assets\\UnitTests\\API__Test.cs:34\r\nat
+      UnityEngine.TestTools.TestEnumerator+<Execute>d__5.MoveNext () [0x00038] in
+      C:\\Users\\Daniel\\Desktop\\Dubai BackUp\\Dubai3DUnity\\Library\\PackageCache\\com.unity.test-framework@1.1.16\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:31\n---\n{\"coord\":{\"lon\":55.3,\"lat\":25.26},\"weather\":[{\"id\":721,\"main\":\"Haze\",\"description\":\"haze\",\"icon\":\"50d\"}],\"base\":\"stations\",\"main\":{\"temp\":24.71,\"feels_like\":26.02,\"temp_min\":23.89,\"temp_max\":25,\"pressure\":1017,\"humidity\":73},\"visibility\":5000,\"wind\":{\"speed\":3.1,\"deg\":120},\"clouds\":{\"all\":0},\"dt\":1605155244,\"sys\":{\"type\":1,\"id\":7537,\"country\":\"AE\",\"sunrise\":1605148437,\"sunset\":1605187929},\"timezone\":14400,\"id\":292223,\"name\":\"Dubai\",\"cod\":200}"
+    m_ResultStacktrace: 'at Tests.API__Test+<API__GET__Test>d__3.MoveNext () [0x00077]
+      in C:\Users\Daniel\Desktop\Dubai BackUp\Dubai3DUnity\Assets\UnitTests\API__Test.cs:34
 
-      ---
+      at
+      UnityEngine.TestTools.TestEnumerator+<Execute>d__5.MoveNext () [0x00038] in
+      C:\Users\Daniel\Desktop\Dubai BackUp\Dubai3DUnity\Library\PackageCache\com.unity.test-framework@1.1.16\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:31
 
-      {"coord":{"lon":55.3,"lat":25.26},"weather":[{"id":800,"main":"Clear","description":"clear
-      sky","icon":"01n"}],"base":"stations","main":{"temp":24.09,"feels_like":26.74,"temp_min":23,"temp_max":25,"pressure":1015,"humidity":78},"visibility":7000,"wind":{"speed":1.5,"deg":100},"clouds":{"all":0},"dt":1605143507,"sys":{"type":1,"id":7537,"country":"AE","sunrise":1605148437,"sunset":1605187929},"timezone":14400,"id":292223,"name":"Dubai","cod":200}'
-    m_ResultStacktrace: 
+'
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 004f2069
-      m_LastClickedID: 1763725056
+      m_SelectedIDs: 69994e6a
+      m_LastClickedID: 1783535977
       m_ExpandedIDs: 90e2a88bd07f61990aabf3c3517043f5e557abf78359db411f4b6664ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
