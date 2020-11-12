@@ -11,12 +11,11 @@ public class Weather : MonoBehaviour
 
     [System.Flags]
     public enum eWeatherState
-    {
-        // Decimal      // Binary
-        none = 0,       // 00000000
-        clear = 1,      // 00000001
-        rain = 2,       // 00000010
-      //rainy = 4,         00000100
+    {      
+        none = 0,       
+        clear = 1,      
+        rain = 2,       
+      //haze = 3,        
     }
 
     [Header("Set in Inspector")]
@@ -96,7 +95,7 @@ public class Weather : MonoBehaviour
     }
 
     // Weather change by user in inspector
-    public void SpawnWeatherPrefabManual(eWeatherState actualWeather, string weatherCondition)
+    private void SpawnWeatherPrefabManual(eWeatherState actualWeather, string weatherCondition)
     {
         //Set new condition
         conditionUI.text = weatherCondition;
@@ -104,7 +103,7 @@ public class Weather : MonoBehaviour
         WeatherSpawner(actualWeather);
     }
 
-    public void WeatherStateChanged()
+    private void WeatherStateChanged()
     {
         if (Weather.WEATHER_STATE != S.weatherState)
         {
@@ -127,7 +126,7 @@ public class Weather : MonoBehaviour
         }
     }
 
-    public void WeatherSpawner(eWeatherState actualWeather)
+    private void WeatherSpawner(eWeatherState actualWeather)
     {
         switch (actualWeather)
         {
@@ -147,7 +146,7 @@ public class Weather : MonoBehaviour
     }
 
     //Destroy any weather model, sounds, light changes. (including particle effects).
-    public void DestroyCloud()
+    private void DestroyCloud()
     {
         Destroy(GameObject.FindWithTag("Cloud"));
         Destroy(GameObject.FindWithTag("Rain"));
